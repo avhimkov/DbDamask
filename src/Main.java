@@ -16,18 +16,17 @@ public class Main {
 //    static Connection connection= null;
     public static void main(String[] args) throws SQLException {
         try {
-//            BufferedReader inputTicket = new BufferedReader(new InputStreamReader(System.in));
-//            String ticket = inputTicket.readLine();
-
+            BufferedReader inputTicket = new BufferedReader(new InputStreamReader(System.in));
+            String ticket = inputTicket.readLine();
             Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
             Connection conn = DriverManager.getConnection("jdbc:ucanaccess://D:\\1\\DamaskLN\\archive.mdb");
             Statement st = conn.createStatement();
-            st.execute("DELETE FROM Process WHERE Ticket='20160413-0001010'");
+            st.execute("DELETE FROM Process WHERE Ticket="+ticket);
             st.execute("DELETE FROM Terminal WHERE Ticket='20160413-0001010'");
 //            String sql = "DELETE FROM Process WHERE Ticket=?"; //20160413-000044
 //            String sql = "DELETE FROM Terminal WHERE Ticket=?"; //20160413-000044
 //            pst = connection.prepareStatement(sql);
-//            pst.setString(1, "20160413-000044");
+//            pst.setString(1, "'20160413-000066'");
 //            pst.execute();
             System.out.println("Delete");
 
