@@ -1,10 +1,11 @@
-import com.healthmarketscience.jackcess.Database;
-import com.healthmarketscience.jackcess.DatabaseBuilder;
-import com.healthmarketscience.jackcess.Table;
+import com.agileasoft.jackcess.orm.dao.AccessDao;
 
 import java.io.*;
-import java.lang.*;
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.List;
 import java.util.Scanner;
 
 
@@ -14,6 +15,12 @@ public class Main {
 //    static PreparedStatement pst = null;
 //    static Connection connection= null;
     public static void main(String[] args) throws SQLException {
+
+        AccessDao<Ticket> clientDao = new new TicketDao(new File("/path/to/your/mdb/file.mdb"));
+        List<Ticket> listClients = clientDao.findAll();
+        for(Ticket client : listClients) {
+            System.out.println(client.toString());
+        }
         try {
             /*чтение файла конфигурации*/
             InputStream myFile = new BufferedInputStream(new FileInputStream("config.txt"));
