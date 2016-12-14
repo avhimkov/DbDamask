@@ -50,21 +50,28 @@ public class Main {
 //                    Scanner myScan = new Scanner(myFile, "windows-1251");
 //                    String line = myScan.nextLine();
 //
-//                    String db = "jdbc:ucanaccess://" + line + "archive.mdb"; //D:\1\DamaskLN\
+//                    String db = "jdbc:sqlserver://localhost:4623;" + "databaseName=kherson;user=testing;password=J5O6QF0A;";
 //
-//                    List<String> list = new ArrayList<>();
-//                    Files.lines(Paths.get("ticket.txt"), StandardCharsets.UTF_8).forEach(list::add);
-//                    for (String name : list) {
-//                        String text = "'" + name + "'";
-//                        System.out.println(name);
+//                    Connection con = DriverManager.getConnection(connectionUrl);
+//                Statement stmt = con.createStatement();
 //
-//                        Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
-//                        Connection conn = DriverManager.getConnection(db);
-//                        Statement st = conn.createStatement();
-//                        st.execute("DELETE FROM Process WHERE Ticket=" + text);
-//                        st.execute("DELETE FROM Terminal WHERE Ticket=" + text);
+//                //query to be run against pkms
+//                ResultSet rs = stmt.executeQuery("SELECT * FROM ds_orders");
 //
-//                        System.out.println("Delete");
+//                while (rs.next()) {
+//                    String str = rs.getString(1)+ "  " + rs.getString(2) + "  " + rs.getString(3);
+//                    System.out.println(str);
+//                }
+//                //Create table for query results to be displayed
+//                //JTable table = new JTable(rs);
+//                //  table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+//                // JScrollPane resultsPane = new JScrollPane(table);
+//                //  contentPane.add(resultsPane, BorderLayout.CENTER);
+//                rs.close();
+//                stmt.close();
+//                con.close();
+//                pack();
+//                setVisible(true);
 //                    }
 //                } catch (Exception e) {
 //                    System.out.println(e);
