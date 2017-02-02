@@ -28,7 +28,10 @@ public class Main {
                     List<String> list = new ArrayList<>();
                     Files.lines(Paths.get("ticket.txt"), StandardCharsets.UTF_8).forEach(list::add);
                     for (String name : list) {
-                        String text = "'" + name + "'";
+                        //no testet
+                        String end = name.substring(name.length()-2, name.length()-1);
+
+                        String text = "'" + name + end +"'";
                         System.out.println(name);
 
                         Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
