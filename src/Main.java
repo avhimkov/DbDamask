@@ -3,18 +3,25 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
+import java.text.SimpleDateFormat;
+import java.util.*;
+import java.util.Date;
 
 public class Main {
 
     public static void main(String[] args) throws SQLException, IOException {
         /*выбор типа сортировки*/
+        Date d = new Date();
+        SimpleDateFormat format1 = new SimpleDateFormat("dd.MM.yyyy");
+        String format = format1.format(d);
+
         System.out.println("Тип БД");
         BufferedReader inputType = new BufferedReader(new InputStreamReader(System.in));
         String type = inputType.readLine();
 
+        File src = new File("archive.mdb");
+        File dest = new File("archive" + "-" +format +".mdb");
+        CopyFile.Copy(src, dest);
         switch (type) {
             case "access": //for Access
                 try {
