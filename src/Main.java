@@ -29,10 +29,28 @@ public class Main {
                     Files.lines(Paths.get("ticket.txt"), StandardCharsets.UTF_8).forEach(list::add);
                     for (String name : list) {
                         //no tested
-                        String end = name.substring(name.length()-2, name.length()-1);
+                        String one = name.substring(name.length() - 1);
+                        String two = name.substring(name.length() - 2, name.length() - 1);
+                        String trey = name.substring(name.length() - 3, name.length() - 2);
 
-                        String text = "'" + name + end +"'";
-                        System.out.println(name);
+                        if (trey.contains("0")) {
+                            trey = "";
+                            if (two.contains("0")) {
+                                two = "";
+                                if (one.contains("0")){
+                                    one = "";
+                                }else {
+                                    one = name.substring(name.length() - 1);
+                                }
+                            } else {
+                               two = name.substring(name.length() - 2, name.length() - 1);
+                            }
+                        } else {
+                            trey = name.substring(name.length() - 3, name.length() - 2);
+                        }
+
+                        String text = "'" + name + trey + two + one + "'";
+                        System.out.println("Delet - " + text);
 
                         Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
                         Connection conn = DriverManager.getConnection(db);
@@ -40,7 +58,6 @@ public class Main {
                         st.execute("DELETE FROM Process WHERE Ticket=" + text);
                         st.execute("DELETE FROM Terminal WHERE Ticket=" + text);
 
-                        System.out.println("Delete");
                     }
                 } catch (Exception e) {
                     System.out.println(e);
