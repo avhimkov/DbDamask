@@ -28,7 +28,7 @@ public class Main {
                     List<String> list = new ArrayList<>();
                     Files.lines(Paths.get("ticket.txt"), StandardCharsets.UTF_8).forEach(list::add);
                     for (String name : list) {
-                        //no testet
+                        //no tested
                         String end = name.substring(name.length()-2, name.length()-1);
 
                         String text = "'" + name + end +"'";
@@ -47,6 +47,7 @@ public class Main {
                 }
 
             case "mssql": //for MS SQL
+
 //                try {
 //                    /*чтение файла конфигурации*/
 //                    InputStream myFile = new BufferedInputStream(new FileInputStream("config.txt"));
