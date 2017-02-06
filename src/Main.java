@@ -11,7 +11,7 @@ public class Main {
     public static void main(String[] args) throws SQLException, IOException {
         /*выбор типа сортировки*/
         Date d = new Date();
-        SimpleDateFormat format1 = new SimpleDateFormat("dd.MM.yyyy-hh:mm");
+        SimpleDateFormat format1 = new SimpleDateFormat("dd.MM.yyyy-hh.mm");
         String format = format1.format(d);
 
 //        System.out.println("Тип БД");
