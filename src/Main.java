@@ -8,28 +8,29 @@ import java.util.*;
 import java.util.Date;
 
 public class Main {
-
     public static void main(String[] args) throws SQLException, IOException {
         /*выбор типа сортировки*/
         Date d = new Date();
         SimpleDateFormat format1 = new SimpleDateFormat("dd.MM.yyyy-hh:mm");
         String format = format1.format(d);
 
-        System.out.println("Тип БД");
-        BufferedReader inputType = new BufferedReader(new InputStreamReader(System.in));
-        String type = inputType.readLine();
+//        System.out.println("Тип БД");
+//        BufferedReader inputType = new BufferedReader(new InputStreamReader(System.in));
+//        String type = inputType.readLine();
 
-        File src = new File("archive.mdb");
-        File dest = new File("archive" + "-" +format +".mdb");
+        InputStream myFile = new BufferedInputStream(new FileInputStream("config.txt"));
+        Scanner myScan = new Scanner(myFile, "windows-1251");
+        String line = myScan.nextLine();
+
+        File src = new File(line + "archive.mdb");
+        File dest = new File(line + "archive" + "-" + format +".mdb");
+
         CopyFile.Copy(src, dest);
-        switch (type) {
-            case "access": //for Access
+
+//        switch (type) {
+//            case "access": //for Access
                 try {
                     /*чтение файла конфигурации*/
-                    InputStream myFile = new BufferedInputStream(new FileInputStream("config.txt"));
-                    Scanner myScan = new Scanner(myFile, "windows-1251");
-                    String line = myScan.nextLine();
-
                     String db = "jdbc:ucanaccess://" + line + "archive.mdb"; //D:\1\DamaskLN\
 
                     List<String> list = new ArrayList<>();
@@ -57,20 +58,19 @@ public class Main {
                         }
 
                         String text = "'" + name + trey + two + one + "'";
-                        System.out.println("Delet - " + text);
+                        System.out.println("Delete - " + text);
 
                         Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
                         Connection conn = DriverManager.getConnection(db);
                         Statement st = conn.createStatement();
                         st.execute("DELETE FROM Process WHERE Ticket=" + text);
                         st.execute("DELETE FROM Terminal WHERE Ticket=" + text);
-
                     }
                 } catch (Exception e) {
                     System.out.println(e);
                 }
 
-            case "mssql": //for MS SQL
+//            case "mssql": //for MS SQL
 
 //                try {
 //                    /*чтение файла конфигурации*/
@@ -104,7 +104,7 @@ public class Main {
 //                } catch (Exception e) {
 //                    System.out.println(e);
 //                }
-        }
+//        }
 
     }
 }
