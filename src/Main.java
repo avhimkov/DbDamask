@@ -71,7 +71,7 @@ public class Main {
                 Statement st = conn.createStatement();
                 st.execute("DELETE FROM Process WHERE Ticket=" + numberTicket);
                 st.execute("DELETE FROM Terminal WHERE Ticket=" + numberTicket);
-                System.out.println("Delete - " + numberTicket);
+                System.out.println("Delete - - " + numberTicket);
             }
         } catch (Exception e) {
             System.out.println(e);
